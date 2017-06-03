@@ -20,8 +20,8 @@ def main
   when '1'
     puts parse1(body, page_names)
   when 'version_up'
-    puts parse1(body, page_names) == File.read('./output1.puki').chomp
-    puts parse2(body, page_names) == File.read('./output1.puki').chomp
+    puts parse1(body, page_names) == File.read('./output.puki').chomp
+    puts parse2(body, page_names) == File.read('./output.puki').chomp
   else
     puts parse2(body, page_names)
   end
