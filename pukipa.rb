@@ -86,11 +86,11 @@ class Pukipa
     str.chomp!
 
     if str =~ /^ /
-      str = str.map{|s| s.gsub(/^ /,'')}.join
+      str = str.each_line.map{|s| s.gsub(/^ /,'')}.join
       # preの時はstr_parseしない
       str = ['<pre><code>' + escapeHTML(str),'</code></pre>'].join "\n"
     elsif str =~ /^>/
-      str = str.map{|s| s.gsub(/^>/,'')}.join
+      str = str.each_line.map{|s| s.gsub(/^>/,'')}.join
       str = ['<blockquote><p>',str_parse(str),'</p></blockquote>'].join "\n"
     elsif str =~ /^-/
       str = list_parse(str,'ul')
@@ -112,7 +112,7 @@ class Pukipa
     else
       regex = /^\+/
     end
-    str = str.map{|s| s.gsub(regex,'')}.join
+    str = str.each_line.map{|s| s.gsub(regex,'')}.join
     result = []
     result << "<#{list}>"
     tmp = []
@@ -145,7 +145,7 @@ class Pukipa
   def dl_parse(str)
     regex = /^:/
     regex2 = /(.*?)\|(.*)/
-    str = str.map{|s| s.gsub(regex,'')}.join
+    str = str.each_line.map{|s| s.gsub(regex,'')}.join
     result = []
     result << "<dl>"
     tmp = []
