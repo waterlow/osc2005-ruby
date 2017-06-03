@@ -1,0 +1,57 @@
+*Wiki文法
+
+**見出し
+ *h2
+ **h3
+ ***h4
+ ****h5
+*h2
+**h3
+***h4
+****h5
+
+**リスト
+ -list
+ -list2
+ --list2-1
+ --list2-2
+-list
+-list2
+--list2-1
+--list2-2
+
+**番号付きリスト
+ +olist
+ +olist2
+ ++olist2-1
+ ++olist2-2
++olist
++olist2
+++olist2-1
+++olist2-2
+
+**引用
+ >引用文
+ >example
+>引用文
+>example
+
+**pre
+頭にスペースを入れる
+ def takahashi
+   'takahashi'
+ end
+
+**定義語
+ :apple|リンゴ
+ :orange|オランゲ
+:apple|リンゴ
+:orange|オランゲ
+
+**リンク
+ [[example:http://example.com]]
+[[example:http://example.com]]
+
+ページ名には自動リンクされる。
+
+例:)文法
