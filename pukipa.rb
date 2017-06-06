@@ -25,7 +25,7 @@ class Pukipa
     @pagelist_suffix = suffix
     if pagelist.size > 0
       #三文字以下はそもそも対象外
-      pagelist.reject!{|pn| pn.size <= 3 }
+      pagelist.reject!{|pn| pn.bytesize <= 3 }
       pagelist.map!{|pn| Regexp.escape(pn)}
       @pagelist = Regexp.new('(?!<a.*?>.*?)((?:' + pagelist.join(')|(?:') + '))(?!.*?</a>)',Regexp::IGNORECASE )
     end
@@ -206,7 +206,7 @@ class Pukipa
 
   def escape(string)
     string.gsub(/([^ a-zA-Z0-9_.-]+)/n) do
-      '%' + $1.unpack('H2' * $1.size).join('%').upcase
+      '%' + $1.unpack('H2' * $1.bytesize).join('%').upcase
     end.tr(' ', '+')
   end
 end

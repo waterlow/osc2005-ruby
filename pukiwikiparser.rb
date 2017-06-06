@@ -12,10 +12,6 @@ module HTMLUtils
     table = ESC   # optimize
     str.gsub(/[&"<>]/n) {|s| table[s] }
   end
-  
-  def urlencode(str)
-    str.gsub(/[^\w\.\-]/n) {|ch| sprintf('%%%02X', ch[0]) }
-  end
 end
 
 class PukiWikiParser
@@ -153,10 +149,10 @@ class PukiWikiParser
   end
 
   def autolink_re
-    Regexp.union(* @page_names.reject {|name| name.size <= 3 })
+    Regexp.union(* @page_names.reject {|name| name.bytesize <= 3 })
   end
 
   def page_uri(page_name)
-    "#{@base_uri}#{urlencode(page_name)}#{@pagelist_suffix}"
+    "#{@base_uri}#{URI.escape(page_name)}#{@pagelist_suffix}"
   end
 end
